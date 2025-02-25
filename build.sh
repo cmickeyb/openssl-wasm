@@ -10,11 +10,26 @@ env \
     RANLIB="zig ranlib" \
     CC="zig cc --target=wasm32-wasi" \
     CFLAGS="-Ofast -Werror -Qunused-arguments -Wno-shift-count-overflow" \
-    CPPFLAGS="$CPPFLAGS -D_BSD_SOURCE -D_WASI_EMULATED_GETPID -Dgetuid=getpagesize -Dgeteuid=getpagesize -Dgetgid=getpagesize -Dgetegid=getpagesize" \
+    CPPFLAGS="$CPPFLAGS -D_BSD_SOURCE -D_WASI_EMULATED_GETPID -Dgetuid=getpagesize -Dgeteuid=getpagesize -Dgetgid=getpagesize -Dgetegid=getpagesize -DOPENSSL_SMALL_FOOTPRINT" \
     CXXFLAGS="-Werror -Qunused-arguments -Wno-shift-count-overflow" \
     LDFLAGS="-s -lwasi-emulated-getpid" \
     ./Configure \
     --banner="wasm32-wasi port" \
+    \
+    no-atexit \
+    no-autoalginit \
+    no-cms \
+    no-dsa \
+    no-err \
+    no-filenames \
+    no-rdrand \
+    no-zlib \
+    \
+    no-tests \
+    no-buildtest-c++ \
+    no-external-tests \
+    no-unit-test \
+    \
     no-asm \
     no-async \
     no-egd \
